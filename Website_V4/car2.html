@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>BMW M3</title>
+	<style>
+		table {
+			border: 1px solid black;
+			border-collapse: collapse;
+			margin: 0 auto;
+		}
+		th, td {
+			padding: 10px;
+			border: 1px solid black;
+		}
+		.car-image {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="car-image">
+		<img src="bmwM3.jpg" alt="BMW M3" style="width: 452px; height: 279px;">
+		<h1 style="text-align: center;">CAR 2</h1>
+		<table>
+			<thead>
+				<tr>
+					<th colspan="2" style="text-align: center;">CAR 2 DATA</th>
+				</tr>
+			</thead>
+			<tbody>
+			    <tr>
+					<td>Id</td>
+					<td id ="id"></td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td id ="location"></td>
+				</tr>
+				<tr>
+					<td>Direction</td>
+					<td id ="direction"></td>
+				</tr>
+				<tr>
+					<td>Displacement - Engine capacity</td>
+					<td>2990 cm3 / 182.5 cu-in</td>
+				</tr>
+				<tr>
+					<td>Output - Horsepower</td>
+					<td>286 PS / 282 HP / 210 kW @ 7000 rpm</td>
+				</tr>
+				<tr>
+					<td>Maximum torque</td>
+					<td>320 Nm / 236 lb-ft @ 3600 rpm</td>
+				</tr>
+				<tr>
+					<td>Speed</td>
+					<td id ="top-speed"></td>
+				</tr>
+				<tr>
+					<td>Acceleration 0 to 100 km/h</td>
+					<td>6.0 s</td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="text-align: center; margin-top: 20px;">
+			<button id="download-btn">Download</button>
+		</div>
+			<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+				<script>
+					const downloadBtn = document.getElementById("download-btn");
+					const carName = "BMW M3";
+					const table = document.querySelector("table");
+					const SpeedCell = document.getElementById("top-speed");
+					const LocationCell = document.getElementById("location");
+					const IdCell = document.getElementById("id");
+					const DirectionCell = document.getElementById("direction");
+
+			// Initialize Firebase
+			const firebaseConfig = {
+				apiKey: "AIzaSyCsN5HRVbgzdyxSnjgx3auXLDchLLwmuLo",
+  authDomain: "v2vprojectr.firebaseapp.com",
+  databaseURL: "https://v2vprojectr-default-rtdb.firebaseio.com",
+  projectId: "v2vprojectr",
+  storageBucket: "v2vprojectr.appspot.com",
+  messagingSenderId: "27415421324",
+  appId: "1:27415421324:web:e4091fea37c1a7ec2b36a9",
+  measurementId: "G-Y31TKG5NQC"
+			};
+			firebase.initializeApp(firebaseConfig);
+
+			// Read top-speed value from Firebase database
+			const topSpeedRef = firebase.database().ref("Cars/181030/Speed");
+			topSpeedRef.on("value", (snapshot) => {
+				const topSpeed = snapshot.val();
+				SpeedCell.textContent = `${topSpeed} Km/h / ${Math.round(topSpeed/1.609)} Mph`;
+			});
+			
+			// Read location value from Firebase database
+			const locationRef = firebase.database().ref("Cars/181030/Location");
+			locationRef.on("value", (snapshot) => {
+				const location = snapshot.val();
+				LocationCell.textContent = `${location} `;
+			});
+			
+			// Read id value from Firebase database
+			const idRef = firebase.database().ref("Cars/181030/PuplicId");
+			idRef.on("value", (snapshot) => {
+				const id = snapshot.val();
+				IdCell.textContent = `${id} `;
+			});
+			
+			// Read direction value from Firebase database
+			const directionRef = firebase.database().ref("Cars/181030/Direction");
+			directionRef.on("value", (snapshot) => {
+				const direction = snapshot.val();
+				DirectionCell.textContent = `${direction} `;
+			});
+
+			downloadBtn.addEventListener("click", () => {
+				const rows = table.querySelectorAll("tr");
+				let text = "";
+				for (let i = 0; i < rows.length; i++) {
+					const cells = rows[i].querySelectorAll("td");
+					for (let j = 0; j < cells.length; j++) {
+						text += cells[j].textContent + "\t";
+					}
+					text += "\n";
+				}
+				const file = new Blob([text], {type: "text/plain"});
+				const a = document.createElement("a");
+				a.href = URL.createObjectURL(file);
+				a.download = carName + ".txt";
+				a.click();
+			});
+		</script>
+	</div>
+</body>
+</html>

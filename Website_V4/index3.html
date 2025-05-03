@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cars Website</title>
+	<style>
+		.row {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			margin: 20px;
+		}
+		.col {
+			flex: 1 1 200px;
+			margin: 10px;
+			text-align: center;
+		}
+		.car-img {
+			width: 200px;
+			height: 150px;
+		}
+		.compare-btn {
+			margin-top: 20px;
+		}
+		header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #EDEADE;
+        color: #FFFF;
+      }
+	  .center {
+		  text-align: center;
+		  color: black;
+}
+	</style>
+	<link rel="stylesheet" href="stylee.css">
+</head>
+<body>
+<div class="container">
+<div class="navbar">
+<img src="logo.png" class="logo">
+<nav>
+<ul>
+<li><a>Welcome <?php echo $_GET['username']; ?></a></li>
+<li><a href="index.html">Home</a></li>
+<li><a href="index2.html">Sign out</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+</nav>
+</div>
+<div class="row">
+		<div class="col">
+			<a href="car1.php"><img src="bmwM3.jpg" alt="BMW M3" class="car-img">
+			<p>BMW M3</p></a>
+		</div>
+		<div class="col">
+			<a href="car2.php"><img src="bmwM5.jpg" alt="BMW M5" class="car-img">
+			<p>BMW M5</p></a>
+		</div>
+		<div class="col">
+			<a href="car3.php"><img src="dodgeChallenger.png" alt="Dodge challenger" class="car-img">
+			<p>Dodge challenger</p></a>
+		</div>
+		<div class="col">
+			<a href="car4.php"><img src="dodgeCharger.png" alt="Dodge Charger" class="car-img">
+			<p>Dodge Charger</p></a>
+		</div>
+		<div class="col">
+			<a href="car5.php"><img src="golf5.jpg" alt="Golf 5" class="car-img">
+			<p>Golf 5</p></a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<a href="car6.php"><img src="golf7.jpg" alt="Golf 7" class="car-img">
+			<p>Golf 7</p></a>
+		</div>
+		<div class="col">
+			<a href="car7.php"><img src="nissangtrskyline.jpg" alt="Nissan GTR Skyline" class="car-img">
+			<p>Nissan GTR Skyline</p></a>
+		</div>
+		<div class="col">
+			<a href="car8.php"><img src="porschegt1.jpg" alt="Porsche GT1" class="car-img">
+			<p>Porsche GT1</p></a>
+		</div>
+		<div class="col">
+			<a href="car9.php"><img src="porschegt2rs.jpg" alt="Porsche GT2rs" class="car-img">
+			<p>Porsche GT2rs</p></a>
+		</div>
+		<div class="col">
+			<a href="car10.php"><img src="porschegt3rs.jfif" alt="Porsche GT3rs" class="car-img">
+			<p>Porsche GT3rs</p></a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<a href="car11.php"><img src="toyotaSupra.jpg" alt="Toyota Supra" class="car-img">
+			<p>Toyota Supra</p></a>
+		</div>
+	</div>
+</body>
+</html>

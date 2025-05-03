@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Dodge Charger</title>
+	<style>
+		table {
+			border: 1px solid black;
+			border-collapse: collapse;
+			margin: 0 auto;
+		}
+		th, td {
+			padding: 10px;
+			border: 1px solid black;
+		}
+		.car-image {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="car-image">
+		<img src="dodgeCharger.png" alt="Dodge Charger" style="width: 452px; height: 279px;">
+		<h1 style="text-align: center;">Dodge Charger</h1>
+		<table>
+			<thead>
+				<tr>
+					<th colspan="2" style="text-align: center;">Dodge Charger Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Number of cylinders</td>
+					<td>V 8</td>
+				</tr>
+				<tr>
+					<td>Fuel System</td>
+					<td>Multipoint Indirect Injection</td>
+				</tr>
+				<tr>
+					<td>Engine Alignment</td>
+					<td>Longitudinal</td>
+				</tr>
+				<tr>
+					<td>Displacement - Engine capacity</td>
+					<td>6166 cm3 / 376.3 cu-in</td>
+				</tr>
+				<tr>
+					<td>Aspiration</td>
+					<td>Supercharger</td>
+				</tr>
+				<tr>
+					<td>Output - Horsepower</td>
+					<td>808 PS / 797 HP / 594 kW @ 6300 rpm</td>
+				</tr>
+				<tr>
+					<td>Maximum torque</td>
+					<td>959 Nm / 707 lb-ft @ 4500 rpm</td>
+				</tr>
+				<tr>
+					<td>Number of speeds</td>
+					<td>8 speed Automatic</td>
+				</tr>
+				<tr>
+					<td>Fuel Tank Capacity</td>
+					<td>70 L</td>
+				</tr>
+				<tr>
+					<td>Top Speed</td>
+					<td>327 Km/hh / 203 Mph</td>
+				</tr>
+				<tr>
+					<td>Acceleration 0 to 100 km/h</td>
+					<td>3.8 s</td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="text-align: center; margin-top: 20px;">
+		<button id="download-btn">Download</button>
+	</div>
+	<script>
+		const downloadBtn = document.getElementById("download-btn");
+		const carName = "Dodge Charger";
+		const table = document.querySelector("table");
+
+		downloadBtn.addEventListener("click", () => {
+			const rows = table.querySelectorAll("tr");
+			let text = "";
+			for (let i = 0; i < rows.length; i++) {
+				const cells = rows[i].querySelectorAll("td");
+				for (let j = 0; j < cells.length; j++) {
+					text += cells[j].textContent + "\t";
+				}
+				text += "\n";
+			}
+			const file = new Blob([text], {type: "text/plain"});
+			const a = document.createElement("a");
+			a.href = URL.createObjectURL(file);
+			a.download = carName + ".txt";
+			a.click();
+		});
+	</script>
+	</div>
+</body>
+</html>
